@@ -6,10 +6,10 @@ const transformer = (_: typescript.Program) => (transformationContext: typescrip
 		if (shouldMutateModuleSpecifier(node)) {
 			if (typescript.isImportDeclaration(node)) {
 				const newModuleSpecifier = typescript.createLiteral(`${node.moduleSpecifier.text}.js`)
-				return typescript.updateImportDeclaration(node, node.decorators, node.modifiers, node.importClause, newModuleSpecifier)
+				return typescript.updateImportDeclaration(node, node.decorators, node.modifiers, node.importClause, newModuleSpecifier, undefined)
 			} else if (typescript.isExportDeclaration(node)) {
 				const newModuleSpecifier = typescript.createLiteral(`${node.moduleSpecifier.text}.js`)
-				return typescript.updateExportDeclaration(node, node.decorators, node.modifiers, node.exportClause, newModuleSpecifier)
+				return typescript.updateExportDeclaration(node, node.decorators, node.modifiers, node.exportClause, newModuleSpecifier, false)
 			}
 		}
 
@@ -23,8 +23,8 @@ const transformer = (_: typescript.Program) => (transformationContext: typescrip
 		if (!typescript.isStringLiteral(node.moduleSpecifier)) return false
 		// only when path is relative
 		if (!node.moduleSpecifier.text.startsWith('./') && !node.moduleSpecifier.text.startsWith('../')) return false
-		// only when module specifier has no extension
-		if (path.extname(node.moduleSpecifier.text) !== '') return false
+		// only when module specifier hasn't specific extensions or has no extension
+		if (['.js', '.jsx', '.ts', '.tsx', '.mts', '.cts', '.json', '.css', '.less', '.htm', '.html', '.scss', 'sass'].includes(path.extname(node.moduleSpecifier.text)) === true || path.extname(node.moduleSpecifier.text).length <= 3) return false
 		return true
 	}
 
