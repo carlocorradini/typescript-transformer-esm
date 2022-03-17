@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "es2019",
+		"target": "ES2022",
 		"module": "esnext",
-		"moduleResolution": "classic",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
 		"rootDir": "source",
 		"outDir": "output",
 		"strict": true,
@@ -13,12 +14,14 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"esModuleInterop": true,
-		"lib": [ "es2019" ],
+		"forceConsistentCasingInFileNames": true,
+		"lib": [ "ES2021" ],
 		"plugins": [
 			{ "transform": "../source/index.ts", "after": true }
 		]
 	},
 	"include": [
-		"source/**/*.ts",
+		"./source/**/*.ts",
+		"./source/**/*.json"
 	],
 }

@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "es2019",
+		"target": "ES2022",
 		"module": "commonjs",
 		"moduleResolution": "node",
+		"resolveJsonModule": true,
 		"rootDir": "source",
 		"outDir": "output",
 		"strict": true,
@@ -14,9 +15,10 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"esModuleInterop": true,
-		"lib": [ "es2019" ],
+		"forceConsistentCasingInFileNames": true,
+		"lib": [ "ES2021" ],
 	},
 	"include": [
-		"source/**/*.ts",
+		"./source/**/*.ts"
 	],
 }
