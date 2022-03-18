@@ -11,7 +11,7 @@ The hope is that eventually TypeScript will [add support for appending the `.js`
 	```
 	npm install --save-dev typescript
 	npm install --save-dev ttypescript
-	npm install --save-dev @zoltu/typescript-transformer-append-js-extension
+	npm install --save-dev @nvandamme/typescript-transformer-append-js-extension
 	```
 1. Add the transformer to your es2015 module `tsconfig-es.json` (or whatever `tsconfig.json` you are using to build es2015 modules)
 	```json
@@ -21,7 +21,7 @@ The hope is that eventually TypeScript will [add support for appending the `.js`
 			"module": "es2015",
 			"plugins": [
 				{
-					"transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
+					"transform": "@nvandamme/typescript-transformer-append-js-extension/output/index.js",
 					"after": true,
 				}
 			]
