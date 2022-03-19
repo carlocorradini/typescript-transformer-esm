@@ -25,8 +25,8 @@ const transformer = (_: typescript.Program) => (transformationContext: typescrip
 		if (!node.moduleSpecifier.text.startsWith('./') && !node.moduleSpecifier.text.startsWith('../')) return false
 		// only when module specifier hasn't specific extensions or has no extension
 		if (
-			['.js', '.jsx', '.ts', '.tsx', '.mts', '.cts', '.json', '.css', '.less', '.htm', '.html', '.scss', 'sass'].includes(path.extname(node.moduleSpecifier.text)) === true ||
-			path.extname(node.moduleSpecifier.text) !== '' && path.extname(node.moduleSpecifier.text).length <= 3
+			['.js', '.jsx', '.ts', '.tsx', '.mts', '.cts', '.json', '.css', '.less', '.htm', '.html', '.scss', '.sass'].includes(path.extname(node.moduleSpecifier.text)) === true ||
+			(path.extname(node.moduleSpecifier.text) !== '' && path.extname(node.moduleSpecifier.text).length <= 4)
 		) return false
 		return true
 	}
