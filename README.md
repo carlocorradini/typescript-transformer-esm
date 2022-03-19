@@ -7,28 +7,40 @@ Browsers now support loading modules natively, without needing to rely on bundle
 The hope is that eventually TypeScript will [add support for appending the `.js` extension as a compiler option](https://github.com/microsoft/TypeScript/issues/16577), but for the time being we'll have to do it ourself.
 
 # Usage
+
 1. Install `typescript`, `ttypescript`, and this transformer into your project if you don't already have them.
-	```
-	npm install --save-dev typescript
-	npm install --save-dev ttypescript
-	npm install --save-dev @zoltu/typescript-transformer-append-js-extension
-	```
-1. Add the transformer to your es2015 module `tsconfig-es.json` (or whatever `tsconfig.json` you are using to build es2015 modules)
+
+    1. With `ttypescript` 
+	    ```
+	    npm install --save-dev typescript
+	    npm install --save-dev ttypescript
+	    npm install --save-dev @nvandamme/typescript-transformer-append-js-extension
+	    ```
+
+    2. With `ts-patch`
+            ```
+	    npm install --save-dev ts-patch
+	    npx ts-patch install
+	    npm install --save-dev @nvandamme/typescript-transformer-append-js-extension
+            ```
+
+2. Add the transformer to your es2015 module `tsconfig-es.json` (or whatever `tsconfig.json` you are using to build es2015 modules)
 	```json
 	// tsconfig-es.json
 	{
 		"compilerOptions": {
-			"module": "es2015",
+			"module": "ES2022",
 			"plugins": [
 				{
-					"transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
+					"transform": "@nvandamme/typescript-transformer-append-js-extension/output/index.js",
 					"after": true,
 				}
 			]
 		},
 	}
 	```
-1. Write some typescript with normal imports
+
+2. Write some typescript with normal imports
 	```typescript
 	// foo.ts
 	export function foo() { console.log('foo') }
@@ -38,7 +50,16 @@ The hope is that eventually TypeScript will [add support for appending the `.js`
 	import { foo } from './foo'
 	foo()
 	```
-1. Compile using `ttsc`
-	```
-	npx ttsc --project tsconfig-es.json
-	```
+
+3. Compiling
+
+    1. Using `ttsc`
+	    ```
+	    npx ttsc --project tsconfig.json
+	    ```
+	    
+    2. Using `ts-patch` 
+            ```
+	    npx tsc --project tsconfig.json
+            ```
+	    
