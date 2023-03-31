@@ -2,10 +2,14 @@
   "name": "typescript-transformer-esm",
   "version": "1.0.0",
   "private": false,
-  "description": "TODO",
+  "description": "Make import/export ESM compatible by appending .js (file) or /index.js (directory)",
   "keywords": [
     "esm",
+    "export",
+    "import",
     "modules",
+    "plugin",
+    "transformer",
     "typescript"
   ],
   "homepage": "https://github.com/carlocorradini/typescript-transformer-esm",
