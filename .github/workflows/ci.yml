@@ -33,7 +33,7 @@ jobs:
         id: version_v_github
         with:
           owner: carlocorradini
-          repo: typescript-transformer-esm-modules
+          repo: typescript-transformer-esm
           excludes: prerelease, draft
 
       - name: Remove leading v* from GitHub version

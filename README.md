@@ -1,6 +1,6 @@
-# typescript-transformer-esm-modules
+# typescript-transformer-esm
 
-[![ci](https://github.com/carlocorradini/typescript-transformer-esm-modules/actions/workflows/ci.yml/badge.svg)](https://github.com/carlocorradini/typescript-transformer-esm-modules/actions/workflows/ci.yml)
+[![ci](https://github.com/carlocorradini/typescript-transformer-esm/actions/workflows/ci.yml/badge.svg)](https://github.com/carlocorradini/typescript-transformer-esm/actions/workflows/ci.yml)
 
 > Inspired by [`@zoltu/typescript-transformer-append-js-extension`](https://github.com/Zoltu/typescript-transformer-append-js-extension) and [`@nvandamme/typescript-transformer-append-js-extension`](https://github.com/nvandamme/typescript-transformer-append-js-extension)
 
@@ -11,7 +11,7 @@
 1. Install
 
    ```sh
-   npm install --save-dev typescript-transformer-esm-modules
+   npm install --save-dev typescript-transformer-esm
    ```
 
 1. Install dependencies
@@ -38,7 +38,7 @@
        // ...
        "plugins": [
          {
-           "transform": "typescript-transformer-esm-modules",
+           "transform": "typescript-transformer-esm",
            "after": true
          }
        ]

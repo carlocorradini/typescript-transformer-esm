@@ -1,5 +1,5 @@
 {
-  "name": "typescript-transformer-esm-modules",
+  "name": "typescript-transformer-esm",
   "version": "1.0.0",
   "private": false,
   "description": "TODO",
@@ -8,13 +8,13 @@
     "modules",
     "typescript"
   ],
-  "homepage": "https://github.com/carlocorradini/typescript-transformer-esm-modules",
+  "homepage": "https://github.com/carlocorradini/typescript-transformer-esm",
   "bugs": {
-    "url": "https://github.com/carlocorradini/typescript-transformer-esm-modules/issues"
+    "url": "https://github.com/carlocorradini/typescript-transformer-esm/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/carlocorradini/typescript-transformer-esm-modules.git"
+    "url": "https://github.com/carlocorradini/typescript-transformer-esm.git"
   },
   "license": "MIT",
   "main": "./build/index.js",

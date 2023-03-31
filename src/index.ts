@@ -62,7 +62,7 @@ export default function transformer(_: typescript.Program) {
     (sourceFile: typescript.SourceFile) => {
       function visitNode(node: typescript.Node): typescript.VisitResult<typescript.Node> {
         if (shouldMutateModuleSpecifier(node)) {
-          const moduleSpecifierPath = path.join(
+          const moduleSpecifierPath = path.resolve(
             path.dirname(sourceFile.fileName),
             node.moduleSpecifier.text,
           );
@@ -71,7 +71,7 @@ export default function transformer(_: typescript.Program) {
             if (fs.lstatSync(`${moduleSpecifierPath}.ts`, { throwIfNoEntry: false })?.isFile()) {
               moduleSpecifierMapping.set(moduleSpecifierPath, ModuleSpecifierType.File);
             } else if (
-              fs.lstatSync(`${moduleSpecifierPath}`, { throwIfNoEntry: false })?.isDirectory()
+              fs.lstatSync(moduleSpecifierPath, { throwIfNoEntry: false })?.isDirectory()
             ) {
               moduleSpecifierMapping.set(moduleSpecifierPath, ModuleSpecifierType.Directory);
             } else {
