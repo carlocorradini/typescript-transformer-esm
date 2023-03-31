@@ -30,7 +30,7 @@
 
 1. Update `tsconfig.json`
 
-   ```json
+   ```jsonc
    {
      "compilerOptions": {
        // ...
