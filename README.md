@@ -1,5 +1,7 @@
 # typescript-transformer-esm-modules
 
+[![ci](https://github.com/carlocorradini/typescript-transformer-esm-modules/actions/workflows/ci.yml/badge.svg)](https://github.com/carlocorradini/typescript-transformer-esm-modules/actions/workflows/ci.yml)
+
 > Inspired by [`@zoltu/typescript-transformer-append-js-extension`](https://github.com/Zoltu/typescript-transformer-append-js-extension) and [`@nvandamme/typescript-transformer-append-js-extension`](https://github.com/nvandamme/typescript-transformer-append-js-extension)
 
 <!-- TODO -->
