@@ -1,28 +1,73 @@
 {
-	"name": "@nvandamme/typescript-transformer-append-js-extension",
-	"description": "A TypeScript transformer for use with ttypescript that will append the JS extension to all relative imports that have no extension.",
-	"version": "1.0.11",
-	"repository": {},
-	"license": "Unlicense",
-	"main": "output/index.js",
-	"devDependencies": {
-		"@types/node": ">=16.0.0",
-		"ts-node": ">=8.0.2",
-		"ts-patch": "^2.0.1",
-		"ttypescript": "^1.5.13",
-		"typescript": ">=4.6.0"
-	},
-	"files": [
-		"/output/",
-		"/source/",
-		"README.md",
-		"LICENSE"
-	],
-	"engines": {
-		"node": ">=16.0.0"
-	},
-	"scripts": {
-		"build": "tsc",
-		"test": "ttsc -p tests/tsconfig.json && echo Go look at tests/output/index.js to validate transformer did its job, because I'm too lazy to write a real test."
-	}
+  "name": "typescript-transformer-esm-modules",
+  "version": "1.0.0",
+  "private": false,
+  "description": "TODO",
+  "keywords": [
+    "esm",
+    "modules",
+    "typescript"
+  ],
+  "homepage": "https://github.com/carlocorradini/typescript-transformer-esm-modules",
+  "bugs": {
+    "url": "https://github.com/carlocorradini/typescript-transformer-esm-modules/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlocorradini/typescript-transformer-esm-modules.git"
+  },
+  "license": "MIT",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "./build"
+  ],
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "npx tsc --build ./tsconfig.json",
+    "check": "npx npm-run-all --npm-path npm \"check:*\"",
+    "check:format": "npx prettier --check .",
+    "check:lint": "npx eslint .",
+    "check:markdown": "npx markdownlint \"**/*.md\"",
+    "check:script": "npx shellcheck ./.husky/pre-commit",
+    "check:type": "npx tsc --project ./tsconfig.json --noEmit",
+    "clean": "npx shx rm -rf build",
+    "fix": "npx npm-run-all --npm-path npm \"fix:*\"",
+    "fix:format": "npx prettier --write .",
+    "fix:lint": "npx eslint --fix .",
+    "fix:markdown": "npx markdownlint --fix \"**/*.md\"",
+    "prepare": "npx ts-patch install -s && npx husky install",
+    "prepublishOnly": "npm run build",
+    "test": ""
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "markdownlint": "^0.27.0",
+    "markdownlint-cli": "^0.33.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.3",
+    "shellcheck": "^2.2.0",
+    "shx": "^0.3.4",
+    "ts-patch": "^2.1.0",
+    "tsconfig-paths": "^4.1.2",
+    "typescript": "^4.9.0",
+    "typescript-transform-paths": "^3.4.6"
+  },
+  "peerDependencies": {
+    "typescript": "^4.9.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }

@@ -1,3 +1,9 @@
-/node_modules/
-#/output/
-/tests/output/
+# node modules
+**/node_modules/
+
+# builded sources
+**/build/
+**/dist/
+
+# coverage reports
+**/coverage/

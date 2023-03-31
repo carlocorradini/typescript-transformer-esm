@@ -1,65 +1,59 @@
-# Abstract
-Teach the TypeScript compiler to emit JavaScript files that can be run natively in the browser using es2015 module syntax.
+# typescript-transformer-esm-modules
 
-## Motivation
-Browsers now support loading modules natively, without needing to rely on bundlers.  However, unlike in NodeJS, the browser cannot try a bunch of different paths to find a file, it must fetch the correct file in a single standard HTTP request on the first try.  This means that when you do `import { Foo } from './foo'`, the browser will try to fetch a file at the path `http://my-domain/path/foo`.  Unless you configure your HTTP server to serve up JS files when no extension is provided, the web server will likely not find any file at that path because the actual file lives  at `http://my-domain/path/foo.js`.  One potential solution to this problem is to write your TS like `import { Foo } from './foo.js'`.  TypeScript is clever enough that it will realize that you _really_ meant `foo.ts` during compilation, and it will successfully find type information.  However, ts-node is [not clever enough](https://github.com/TypeStrong/ts-node/issues/783) to handle these faux paths so if you want a library that works in either ts-node or browser you are out of luck.
+> Inspired by [`@zoltu/typescript-transformer-append-js-extension`](https://github.com/Zoltu/typescript-transformer-append-js-extension) and [`@nvandamme/typescript-transformer-append-js-extension`](https://github.com/nvandamme/typescript-transformer-append-js-extension)
 
-The hope is that eventually TypeScript will [add support for appending the `.js` extension as a compiler option](https://github.com/microsoft/TypeScript/issues/16577), but for the time being we'll have to do it ourself.
+<!-- TODO -->
 
-# Usage
+## Usage
 
-1. Install `typescript`, `ttypescript`, and this transformer into your project if you don't already have them.
+1. Install
 
-    1. With `ttypescript` 
-	    ```
-	    npm install --save-dev typescript
-	    npm install --save-dev ttypescript
-	    npm install --save-dev @nvandamme/typescript-transformer-append-js-extension
-	    ```
+   ```sh
+   npm install --save-dev typescript-transformer-esm-modules
+   ```
 
-    2. With `ts-patch`
-            ```
-	    npm install --save-dev ts-patch
-	    npx ts-patch install
-	    npm install --save-dev @nvandamme/typescript-transformer-append-js-extension
-            ```
+1. Install dependencies
 
-2. Add the transformer to your es2015 module `tsconfig-es.json` (or whatever `tsconfig.json` you are using to build es2015 modules)
-	```json
-	// tsconfig-es.json
-	{
-		"compilerOptions": {
-			"module": "ES2022",
-			"plugins": [
-				{
-					"transform": "@nvandamme/typescript-transformer-append-js-extension/output/index.js",
-					"after": true,
-				}
-			]
-		},
-	}
-	```
+   [`ts-patch`](https://github.com/nonara/ts-patch) or [`ttypescript`](https://github.com/cevek/ttypescript)
 
-2. Write some typescript with normal imports
-	```typescript
-	// foo.ts
-	export function foo() { console.log('foo') }
-	```
-	```typescript
-	// index.ts
-	import { foo } from './foo'
-	foo()
-	```
+   - `ts-patch`
 
-3. Compiling
+     ```sh
+     npm install --save-dev ts-patch && npx ts-patch install -s
+     ```
 
-    1. Using `ttsc`
-	    ```
-	    npx ttsc --project tsconfig.json
-	    ```
-	    
-    2. Using `ts-patch` 
-            ```
-	    npx tsc --project tsconfig.json
-            ```
-	    
+   - `ttypescript`
+
+     ```sh
+     npm install --save-dev ttypescript
+     ```
+
+1. Update `tsconfig.json`
+
+   ```json
+   {
+     "compilerOptions": {
+       // ...
+       "plugins": [
+         {
+           "transform": "typescript-transformer-esm-modules",
+           "after": true
+         }
+       ]
+     }
+   }
+   ```
+
+1. Compile
+
+   - `ts-patch`
+
+     ```sh
+     npx tsc --build tsconfig.json
+     ```
+
+   - `ttypescript`
+
+     ```sh
+     npx ttsc --build tsconfig.json
+     ```
