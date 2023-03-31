@@ -7,6 +7,8 @@ const enum ModuleSpecifierType {
   Directory,
 }
 
+const moduleSpecifierMapping = new Map<string, ModuleSpecifierType>();
+
 function shouldMutateModuleSpecifier(node: typescript.Node): node is (
   | typescript.ImportDeclaration
   | typescript.ExportDeclaration
@@ -56,8 +58,6 @@ function shouldMutateModuleSpecifier(node: typescript.Node): node is (
 
 // eslint-disable-next-line import/no-default-export
 export default function transformer(_: typescript.Program) {
-  const moduleSpecifierMapping = new Map<string, ModuleSpecifierType>();
-
   return (transformationContext: typescript.TransformationContext) =>
     (sourceFile: typescript.SourceFile) => {
       function visitNode(node: typescript.Node): typescript.VisitResult<typescript.Node> {
